@@ -5,10 +5,9 @@
 <h3>
 <%= post.content %>
 </h3>
-<button>
-Edit
-</button>
-<%= button_to "Delete", post_path(post), method: :delete%>
+<%= link_to "Edit", edit_post_path(post) %>
+
+<%= button_to "Delete", delete_post_path(post), method: :delete%>
 <a href="<%= post_path(post) %>">Show</a>
 
 
