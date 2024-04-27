@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :emojis
   resources :posts
   resources :creators
   resources :authors
