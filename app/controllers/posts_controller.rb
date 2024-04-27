@@ -1,10 +1,20 @@
 class PostsController < ApplicationController
  def index 
-    #post = Post.create({title: "t2", content: "content2"})
-    posts = Post.all
-    puts posts.each {
-        |post|
-        puts post.attributes
-    }
+    @posts = Post.all
+    #puts @posts
  end
+ def new 
+    @post = Post.new
+ end
+ def create
+    @post = Post.new({title: params[:title], content: params[:content]})
+    #puts "+++ #{params}"
+    if @post.save
+        redirect_to posts_url(@post)
+    else
+        render :new, status: 422
+    end
+ end
+
+ def 
 end

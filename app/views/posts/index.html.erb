@@ -1,1 +1,18 @@
-<p>hello</p>
+<% @posts.each do |post| %>
+<div>
+<h1> <%= post.title %>
+</h1>
+<h3>
+<%= post.content %>
+</h3>
+<button>
+Edit
+</button>
+<button>
+delete
+</button>
+<button>
+Show
+</button>
+</div>
+<% end %>
