@@ -7,7 +7,7 @@ class PostsController < ApplicationController
     @post = Post.new
  end
  def create
-    @post = Post.new({title: params[:title], content: params[:content]})
+    @post = Post.new({title: params[:post][:title], content: params[:post][:content]})
     #puts "+++ #{params}"
     if @post.save
         redirect_to posts_url(@post)
@@ -16,5 +16,5 @@ class PostsController < ApplicationController
     end
  end
 
- def 
+
 end
