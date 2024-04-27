@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_27_123701) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_27_124108) do
   create_table "authors", force: :cascade do |t|
     t.string "name"
     t.date "dob"
@@ -29,6 +29,21 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_27_123701) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "emojis", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "post_emojis", force: :cascade do |t|
+    t.integer "post_id", null: false
+    t.integer "emoji_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["emoji_id"], name: "index_post_emojis_on_emoji_id"
+    t.index ["post_id"], name: "index_post_emojis_on_post_id"
+  end
+
   create_table "posts", force: :cascade do |t|
     t.string "title"
     t.string "content"
@@ -40,6 +55,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_27_123701) do
     t.index ["creator_id"], name: "index_posts_on_creator_id"
   end
 
+  add_foreign_key "post_emojis", "emojis"
+  add_foreign_key "post_emojis", "posts"
   add_foreign_key "posts", "authors"
   add_foreign_key "posts", "creators"
 end

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :post_emojis
   resources :emojis
   resources :posts
   resources :creators
