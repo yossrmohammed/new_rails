@@ -15,6 +15,9 @@ class PostsController < ApplicationController
         render :new, status: 422
     end
  end
-
+ def show
+   @post = Post.find(params[:id])
+   puts "++++++++++ #{@post}"
+ end
 
 end
