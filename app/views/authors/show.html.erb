@@ -1,0 +1,16 @@
+<div>
+<h1> <%= @author.name %>
+</h1>
+<h3>
+<%= @author.email %>
+</h3>
+<h3>
+<%= @author.dob %>
+<h3>
+<%= @author.phone_number %>
+</h3>
+
+<%= link_to "Edit", edit_author_path(@author) %>
+
+<%= button_to "Delete", delete_author_path(@author), method: :delete%>
+</div>
