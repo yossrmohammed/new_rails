@@ -19,5 +19,9 @@ class PostsController < ApplicationController
    @post = Post.find(params[:id])
    puts "++++++++++ #{@post}"
  end
-
+ def destroy
+   @post = Post.find(params[:id]);
+   @post.destroy
+   redirect_to posts_url(@post)
+ end
 end
