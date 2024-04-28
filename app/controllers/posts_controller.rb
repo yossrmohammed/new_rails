@@ -1,36 +1,45 @@
 class PostsController < ApplicationController
-    def index
-        @posts = Post.all
-    end
+  def index
+     @posts=Post.all
+  end
 
-    def show
-      @post = Post.find(params[:id])
-    end
-    def new
-      @post = Post.new
-      render :new  # Render the new.html.erb view with the initialized @post object
-    end
-    
-      
-    def create
-      @post = Post.new(post_params)
-      
-      if @post.save
-        redirect_to posts_url(@post)
+  def new 
+      @post=Post.new
+  end
+
+  def create
+
+      @post = Post.new({title: params[:post][:title], content: params[:post][:content]})
+      if @post.save 
+      redirect_to @post
       else
-        # Inspect errors for debugging purposes
-        puts @post.errors.full_messages.inspect
-        render :new, status: 422
+      render :new 
       end
-    end
-    
-        private
-      
-        def post_params
-          params.require(:post).permit(:title, :content)
+
+  end
+
+  def show
+      @post=Post.find(params[:id])
+      puts "#{@post}"
+  end
+
+  def edit
+      @post = Post.find(params[:id])
+  end
+
+    def update
+        @post = Post.find(params[:id])
+        if @post.update(post_params)
+            redirect_to @post
+        else
+            render :edit
         end
-      end
-      
+    end
 
+  def destroy
+      @post = post.find(params[:id]) 
+      @post.destroy
+      redirect_to @post
+  end
 
-
+end
