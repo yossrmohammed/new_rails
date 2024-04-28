@@ -3,19 +3,32 @@ class PostsController < ApplicationController
         @posts = Post.all
     end
 
+    
     def new
-        @post = Post.new
+      @post = Post.new
+      render :new  # Render the new.html.erb view with the initialized @post object
     end
-
+    
+      
     def create
-        @post = Post.new({title:params[:post][:title], content:params[:post][:content]})
-
-        if @post.save
-            redirect_to posts_url(@post)
-        else
-            render :new, status:422
-        end
+      @post = Post.new(post_params)
+      
+      if @post.save
+        redirect_to posts_url(@post)
+      else
+        # Inspect errors for debugging purposes
+        puts @post.errors.full_messages.inspect
+        render :new, status: 422
+      end
     end
+    
+        private
+      
+        def post_params
+          params.require(:post).permit(:title, :content)
+        end
+      end
+      
 
 
-end
+
