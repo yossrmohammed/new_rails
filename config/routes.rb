@@ -19,4 +19,14 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+
+
+  get "authors/" ,to: "authors#index"
+
+  get "authors/new", to: "authors#new" 
+  get "authors/:id", to: "authors#show", as: "author"
+  post "authors/", to: "authors#create"
+  delete "authors/:id", to: "authors#destroy" , as: 'delete_author'
+  get "authors/:id/edit", to: "authors#edit",  as: 'edit_author'
+  patch "authors/:id", to: "authors#update"
 end
