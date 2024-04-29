@@ -1,0 +1,18 @@
+<% @authors.each do |author| %>
+    <div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 20px;">
+      <h1 style="font-size: 24px; margin-bottom: 10px;"><%= author.name %></h1>
+      <h3 style="margin-bottom: 5px;"><%= author.email %></h3>
+      <h3 style="margin-bottom: 5px;"><%= author.dob %></h3>
+      <h3 style="margin-bottom: 10px;"><%= author.phone_number %></h3>
+      
+      <a href="<%= edit_author_path(author) %>" style="text-decoration: none; margin-right: 10px;">Edit</a>
+      
+      <form action="<%= delete_author_path(author) %>" method="post" style="display: inline;">
+        <input type="hidden" name="_method" value="delete">
+        <input type="submit" value="Delete" style="cursor: pointer; background-color: #ff0000; color: #fff; border: none; padding: 5px 10px;">
+      </form>
+      
+      <a href="<%= author_path(author) %>" style="text-decoration: none; margin-left: 10px;">Show</a>
+    </div>
+  <% end %>
+  
